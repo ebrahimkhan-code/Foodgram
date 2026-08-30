@@ -1,0 +1,56 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment files
+.env
+.env.*
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter / notebooks checkpoints
+.ipynb_checkpoints/
+
+# Build and packaging artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Test / coverage outputs
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local data or generated files
+*.log
+*.sqlite3
+*.db
+
+# Project-specific generated content
+Phase Two/chroma_db/
+Phase Two/*.npy
+Phase Two/*.csv
+Phase Two/*.json
+
+# Keep local data tracked manually if needed
+# Uncomment the following if you want to keep a specific CSV/model file in git:
+# !Phase Two/menu_dataset_enriched_FINAL.csv
