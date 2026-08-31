@@ -3,6 +3,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const { Pool } = require('pg');
 const routes = require('./src/routes/index');
+const gameRoutes = require('./src/routes/game');
+const recommendationRoutes = require('./src/routes/recommendations');
+const tasteRoutes = require('./src/routes/taste');
+
 
 // Load environment variables
 dotenv.config();
@@ -13,6 +17,9 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/api', gameRoutes);
+app.use('/api', recommendationRoutes);
+app.use('/api', tasteRoutes);
 
 // Database connection
 const pool = new Pool({

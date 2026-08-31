@@ -1,0 +1,613 @@
+{
+  "retrieval": {
+    "total_queries": 50,
+    "ground_truth_queries": 50,
+    "precision_at_k": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "retrieved_ids": [
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__beef-gyro",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__beef-shawarma-with-roasted-potatoes",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__beef-steak-over-rice",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__chicken-gyro",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__chicken-karaage-over-rice",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__chicken-loaded-hummus",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__chicken-over-salad",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__chicken-shawarma",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__chicken-beef-over-rice",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__coke",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__coke-zero",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__fanta",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__fattoush",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__fattoush-with-feta",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__grilled-chicken-over-rice",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__herb-sauce",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__hummus",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__mandi-sauce",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__mixed-grill-over-salad",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__mixed-gyro",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__roasted-potatoes",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__sprite",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__sprite-zero",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__sweet-lokma-bites",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x8l5__toum-sauce",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__biryani-cola-next-deal",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-biryani-single",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-kabab",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-kabab-biryani",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-kabab-pulao",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-malai-tikka-chest",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-malai-tikka-leg",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-pulao-single",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-tikka-chest",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-tikka-chest-biryani",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-tikka-chest-pulao",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-tikka-leg",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-tikka-leg-biryani",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__chicken-tikka-leg-pulao",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__cola-next-1-5-litre",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__cola-next-regular",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__duo-cola-next-deal",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__fizup-next-1-5-litre",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__fizup-next-regular",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__malai-tikka-chest-biryani",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__malai-tikka-chest-pulao",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__malai-tikka-leg-biryani",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__malai-tikka-leg-pulao",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__pack-of-10-biryani",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      },
+      {
+        "query": "Tell me about ",
+        "expected": "x97o__pulao-cola-next-deal",
+        "retrieved": [
+          "kc75__dynamite",
+          "kyrl__deal-2-single-serving",
+          "kyrl__deal-1-single-serving"
+        ],
+        "hit": 0.0
+      }
+    ],
+    "avg_precision_at_k": 0.0,
+    "mrr": 0.0
+  },
+  "grounding": {
+    "total_evaluated": 10,
+    "grounded_answers": 10,
+    "grounding_score": 1.0,
+    "hallucinated_details": [],
+    "unsupported_claims": []
+  },
+  "interception": {
+    "total_unsupported_queries": 5,
+    "successfully_intercepted": 4,
+    "interception_rate": 0.8,
+    "failed_interceptions": [
+      "Is this vegan-friendly?"
+    ]
+  },
+  "rag_comparison": {
+    "comparison": [
+      {
+        "query": "What is a high-protein option?",
+        "rag_similarity": 0.4338,
+        "rag_above_threshold": true,
+        "confidence_gain": 0.4338
+      },
+      {
+        "query": "Show me vegetarian items",
+        "rag_similarity": 0.5412,
+        "rag_above_threshold": true,
+        "confidence_gain": 0.5412
+      },
+      {
+        "query": "What are the most popular items?",
+        "rag_similarity": 0.3528,
+        "rag_above_threshold": true,
+        "confidence_gain": 0.3528
+      },
+      {
+        "query": "Find low-calorie options",
+        "rag_similarity": 0.2862,
+        "rag_above_threshold": false,
+        "confidence_gain": 0.2862
+      },
+      {
+        "query": "Show me breakfast items",
+        "rag_similarity": 0.52,
+        "rag_above_threshold": true,
+        "confidence_gain": 0.52
+      }
+    ],
+    "avg_similarity_with_rag": 0.42680000000000007,
+    "avg_confidence_improvement": 0.42680000000000007
+  }
+}

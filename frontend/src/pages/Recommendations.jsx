@@ -49,8 +49,15 @@ const Recommendations = () => {
         }
     };
 
-    const handleFoodClick = (foodId) => {
-        navigate(`/food/${foodId}`);
+    // Accepts either a full food object (from a card — carried via router state
+    // so the detail page renders instantly) or just a food_id string (from the
+    // Ask Foodgram source chips, which only know the id).
+    const handleFoodClick = (foodOrId) => {
+        if (foodOrId && typeof foodOrId === 'object') {
+            navigate(`/food/${foodOrId.food_id}`, { state: { food: foodOrId } });
+        } else {
+            navigate(`/food/${foodOrId}`);
+        }
     };
 
     const handleOrder = (food) => {
@@ -150,12 +157,28 @@ const Recommendations = () => {
     }
 
     return (
-        <motion.div 
+        <motion.div
             className="recommendations-page"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
+            <div className="recs-topbar">
+                <div className="recs-topbar-text">
+                    <h1>🍴 Your Recommendations</h1>
+                    <p>Handpicked for your taste profile</p>
+                </div>
+                <motion.button
+                    className="retake-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate('/game')}
+                >
+                    🔄 Retake quiz
+                </motion.button>
+            </div>
+
+            <AskBar onFoodClick={handleFoodClick} onOrder={handleOrder} onFeedback={handleFeedback} />
             {/* <motion.div 
                 className={`guest-banner ${!isGuest ? 'logged-in' : ''}`}
                 initial={{ opacity: 0, y: -20 }}
@@ -208,7 +231,7 @@ const Recommendations = () => {
                                 <FoodCard
                                     food={food}
                                     type="exploitation"
-                                    onClick={() => handleFoodClick(food.food_id)}
+                                    onClick={() => handleFoodClick(food)}
                                     onOrder={() => handleOrder(food)}
                                     onFeedback={(type, rating) => handleFeedback(food.food_id, type, rating)}
                                 />
@@ -247,7 +270,7 @@ const Recommendations = () => {
                                 <FoodCard
                                     food={food}
                                     type="exploration"
-                                    onClick={() => handleFoodClick(food.food_id)}
+                                    onClick={() => handleFoodClick(food)}
                                     onOrder={() => handleOrder(food)}
                                     onFeedback={(type, rating) => handleFeedback(food.food_id, type, rating)}
                                 />
@@ -260,19 +283,174 @@ const Recommendations = () => {
     );
 };
 
-const FoodCard = ({ food, type, onClick, onOrder, onFeedback }) => {
+// Natural-language food search / Q&A powered by Member 2 (RAG/LLM) via the
+// backend /api/ask proxy. Fully self-contained and degrades quietly: if the
+// service is offline the answer area just shows a soft "unavailable" note.
+const AskBar = ({ onFoodClick, onOrder, onFeedback }) => {
+    const [query, setQuery] = useState('');
+    const [asking, setAsking] = useState(false);
+    const [result, setResult] = useState(null);
+
+    const parseName = (src) => {
+        if (!src) return null;
+        if (src.name) return src.name;
+        const doc = src.document || '';
+        if (doc.includes(' is ')) return doc.split(' is ')[0].trim();
+        if (doc.includes(' — ')) return doc.split(' — ')[0].trim();
+        return src.food_id || null;
+    };
+
+    // Catalog-fallback sources are full dish objects (image/price/score) → render
+    // them as proper recommendation cards. Member 2's RAG sources are sparse
+    // (food_id + document only) → render those as lightweight name chips.
+    const hasCards = (sources) =>
+        Array.isArray(sources) && sources.length > 0 &&
+        sources.some((s) => s && (s.image_url || s.price || s.score !== undefined));
+
+    const submit = async (e) => {
+        e.preventDefault();
+        const q = query.trim();
+        if (!q || asking) return;
+        setAsking(true);
+        setResult(null);
+        try {
+            const resp = await fetch('/api/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: q, top_k: 9 })
+            });
+            const data = await resp.json();
+            setResult(data);
+        } catch (err) {
+            setResult({ available: false, answer: '' });
+        } finally {
+            setAsking(false);
+        }
+    };
+
+    const suggestions = ['Something spicy and non-veg', 'A good vegetarian option', 'High-protein lunch', 'Sweet dessert'];
+
     return (
-        <motion.div 
+        <motion.div
+            className="ask-bar"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+        >
+            <form className="ask-form" onSubmit={submit}>
+                <span className="ask-icon">🔎</span>
+                <input
+                    type="text"
+                    className="ask-input"
+                    placeholder="Ask Foodgram… e.g. “a spicy vegetarian dish under Rs. 800”"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+                <motion.button
+                    type="submit"
+                    className="ask-submit"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    disabled={asking || !query.trim()}
+                >
+                    {asking ? '…' : 'Ask'}
+                </motion.button>
+            </form>
+
+            {!result && !asking && (
+                <div className="ask-suggestions">
+                    {suggestions.map((s) => (
+                        <button key={s} type="button" className="ask-chip" onClick={() => setQuery(s)}>
+                            {s}
+                        </button>
+                    ))}
+                </div>
+            )}
+
+            <AnimatePresence>
+                {result && (
+                    <motion.div
+                        className="ask-answer"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                    >
+                        {result.available === false ? (
+                            <p className="ask-unavailable">
+                                🤖 The food assistant is offline right now — browse your picks below instead.
+                            </p>
+                        ) : (
+                            <>
+                                <p className="ask-text">{result.answer}</p>
+                                {hasCards(result.sources) ? (
+                                    <div className="food-grid ask-results-grid">
+                                        {result.sources.map((food, i) => (
+                                            <motion.div
+                                                key={food.food_id || i}
+                                                initial={{ opacity: 0, y: 16 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.35, delay: i * 0.05 }}
+                                                whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+                                            >
+                                                <FoodCard
+                                                    food={food}
+                                                    type={food.confidence === 'high' ? 'exploitation' : 'exploration'}
+                                                    onClick={() => onFoodClick && onFoodClick(food)}
+                                                    onOrder={() => onOrder && onOrder(food)}
+                                                    onFeedback={(type, rating) => onFeedback && onFeedback(food.food_id, type, rating)}
+                                                />
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    Array.isArray(result.sources) && result.sources.length > 0 && (
+                                        <div className="ask-sources">
+                                            <span className="ask-sources-label">Based on:</span>
+                                            {result.sources.map((s, i) => {
+                                                const name = parseName(s);
+                                                if (!name) return null;
+                                                return (
+                                                    <button
+                                                        key={s.food_id || i}
+                                                        type="button"
+                                                        className="ask-source-chip"
+                                                        onClick={() => s.food_id && onFoodClick && onFoodClick(s.food_id)}
+                                                    >
+                                                        {name}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    )
+                                )}
+                            </>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+};
+
+const FoodCard = ({ food, type, onClick, onOrder, onFeedback }) => {
+    const [imgError, setImgError] = useState(false);
+    const { isFavorite, toggleFavorite } = useContext(SessionContext);
+    const fav = isFavorite(food);
+    const showImage = food.image_url && !imgError;
+    return (
+        <motion.div
             className={`food-card ${type}`}
             whileHover={{ y: -8 }}
             transition={{ duration: 0.3 }}
             onClick={onClick}
         >
             <div className="food-image">
-                {food.image_url ? (
-                    <motion.img 
-                        src={food.image_url} 
+                {showImage ? (
+                    <motion.img
+                        src={food.image_url}
                         alt={food.name}
+                        loading="lazy"
+                        onError={() => setImgError(true)}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.4 }}
                     />
@@ -286,7 +464,27 @@ const FoodCard = ({ food, type, onClick, onOrder, onFeedback }) => {
             
             <div className="food-info">
                 <h3>{food.name || food.food_name || 'Dish'}</h3>
+                {food.restaurant && (
+                    <p className="restaurant" style={{ margin: '2px 0', fontSize: '0.85rem', color: '#666' }}>
+                        🏬 {food.restaurant}
+                    </p>
+                )}
                 <p className="cuisine">{food.cuisine || 'Various'}</p>
+                <div
+                    className="food-meta"
+                    style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', margin: '6px 0' }}
+                >
+                    {food.price > 0 && (
+                        <span className="price" style={{ fontWeight: 700, color: '#e65100' }}>
+                            Rs. {Math.round(food.price)}
+                        </span>
+                    )}
+                    {food.rating > 0 && (
+                        <span className="rating" style={{ fontSize: '0.85rem', color: '#666' }}>
+                            ⭐ {Number(food.rating).toFixed(1)}
+                        </span>
+                    )}
+                </div>
                 <motion.p 
                     className="reason"
                     initial={{ opacity: 0 }}
@@ -296,7 +494,7 @@ const FoodCard = ({ food, type, onClick, onOrder, onFeedback }) => {
                     💡 {food.reason || 'Recommended for you'}
                 </motion.p>
                 <div className="food-actions" onClick={(e) => e.stopPropagation()}>
-                    <motion.button 
+                    <motion.button
                         className="action-btn like"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -304,7 +502,7 @@ const FoodCard = ({ food, type, onClick, onOrder, onFeedback }) => {
                     >
                         👍
                     </motion.button>
-                    <motion.button 
+                    <motion.button
                         className="action-btn dislike"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
@@ -312,15 +510,16 @@ const FoodCard = ({ food, type, onClick, onOrder, onFeedback }) => {
                     >
                         👎
                     </motion.button>
-                    <motion.button 
-                        className="action-btn save"
+                    <motion.button
+                        className={`action-btn save ${fav ? 'active' : ''}`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => onFeedback('save')}
+                        title={fav ? 'Remove from favorites' : 'Add to favorites'}
+                        onClick={() => toggleFavorite(food)}
                     >
-                        ⭐
+                        {fav ? '❤️' : '🤍'}
                     </motion.button>
-                    <motion.button 
+                    <motion.button
                         className="action-btn order"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

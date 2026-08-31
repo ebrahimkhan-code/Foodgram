@@ -30,6 +30,8 @@ const Navbar = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const { sessionId, linkSessionToUser } = useContext(SessionContext);
@@ -56,12 +58,14 @@ const Navbar = () => {
 
     // Open auth modal
     const openAuthModal = (mode = 'login') => {
-        setIsLoginMode(mode);
+        setIsLoginMode(mode === 'login');
         setShowAuthModal(true);
         setError(null);
         setEmail('');
         setPassword('');
         setConfirmPassword('');
+        setFirstName('');
+        setLastName('');
         setIsMobileMenuOpen(false);
         setIsProfileDropdownOpen(false);
     };
@@ -121,11 +125,13 @@ const Navbar = () => {
             const response = await fetch('/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    email, 
-                    password, 
-                    name: email.split('@')[0],
-                    sessionId 
+                body: JSON.stringify({
+                    email,
+                    password,
+                    firstName: firstName.trim(),
+                    lastName: lastName.trim(),
+                    name: [firstName.trim(), lastName.trim()].filter(Boolean).join(' ') || email.split('@')[0],
+                    sessionId
                 })
             });
 
@@ -434,6 +440,30 @@ const Navbar = () => {
                                 <p>{isLoginMode ? 'Login to continue your food journey' : 'Start your food discovery journey'}</p>
 
                                 <form onSubmit={isLoginMode ? handleLogin : handleSignup}>
+                                    {!isLoginMode && (
+                                        <div className="form-row">
+                                            <div className="form-group">
+                                                <label>First Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={firstName}
+                                                    onChange={(e) => setFirstName(e.target.value)}
+                                                    required
+                                                    placeholder="First name"
+                                                />
+                                            </div>
+                                            <div className="form-group">
+                                                <label>Last Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={lastName}
+                                                    onChange={(e) => setLastName(e.target.value)}
+                                                    placeholder="Last name"
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+
                                     <div className="form-group">
                                         <label>Email</label>
                                         <input
