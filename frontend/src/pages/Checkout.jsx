@@ -21,7 +21,7 @@ const Checkout = () => {
         } else {
             navigate('/recommendations');
         }
-    }, [location]);
+    }, [location, navigate]);
 
     if (!selectedItem) {
         return <div className="loading-container"><div className="spinner">⏳</div><p>Loading...</p></div>;

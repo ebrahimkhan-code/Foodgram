@@ -6,7 +6,7 @@ import { SessionContext } from '../context/SessionContext';
 const Recommendations = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { sessionId, isGuest, tasteDNA, setTasteDNA } = useContext(SessionContext);
+    const { sessionId, setTasteDNA } = useContext(SessionContext);
     const [recommendations, setRecommendations] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -32,6 +32,7 @@ const Recommendations = () => {
         }
 
         fetchRecommendations();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchRecommendations = async () => {
